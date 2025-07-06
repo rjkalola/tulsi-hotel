@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tulsi_hotel/res/colors.dart';
+import 'package:tulsi_hotel/routes/app_routes.dart';
+import 'package:tulsi_hotel/widgets/text/PrimaryTextViewInter.dart';
+
+class AddressDetails extends StatelessWidget {
+  const AddressDetails({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(AppRoutes.addressListScreen);
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              PrimaryTextViewInter(
+                'your_address'.tr,
+                color: secondaryTextColor,
+                fontSize: 13,
+              ),
+              Icon(
+                Icons.arrow_drop_down_outlined,
+                size: 20,
+              )
+            ],
+          ),
+          PrimaryTextViewInter(
+            "A-101, Krishna Apartment, Nikol",
+            maxLine: 1,
+            overflow: TextOverflow.ellipsis,
+            color: primaryTextColor,
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
+        ],
+      ),
+    );
+  }
+}

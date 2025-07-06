@@ -1,0 +1,71 @@
+import 'package:get/get_navigation/src/root/internacionalization.dart';
+
+class Strings extends Translations {
+  @override
+  Map<String, Map<String, String>> get keys => {
+        'en_US': {
+          'app_title': 'Tulsi Hotel',
+          'best_gujarati_dishes_and_tiffins':
+              "Best Gujarati Dishes and Tiffins",
+          'welcome_': "Welcome 👋",
+          'login_or_sign_up': "Login or Signup",
+          'enter_mobile_number': "Enter Mobile Number",
+          'continue': "Continue",
+          'by_continue_agree_text': "By continuing, You\’re agree to our ",
+          'terms_of_service': "Terms of service",
+          'privacy_policy': "Privacy Policy",
+          'otp_verification': "OTP Verification",
+          'we_have_sent_a_verification_code_to':
+              "We have sent a verification code to",
+          'did_not_get_the_otp': "Didn\’t get the OTP?",
+          'resend_otp': "Resend OTP",
+          'go_back': "Go Back",
+          'home': "Home",
+          'menu': "Menu",
+          'orders': "Orders",
+          'profile': "Profile",
+          'enter_your_mobile_number': "Enter your mobile number",
+          'search_for_tiffins_thali_dishes':
+              "Search for Tiffin, Thali or Dishes...",
+          'for_today': "For Today",
+          'order_a_lunch': "Order a Lunch",
+          'lunch_time': "(11:30 AM to 3:30 PM)",
+          'dinner_time': "(11:30 AM to 3:30 PM)",
+          'any_2_sabji_roti_khachdi_kadhi_papad_salad':
+              "Any 2 Sabji, Roti / Bhakhri, Khichdi, Kadhi, Papad, Salad",
+          'deliver_within_45_mins': "Deliver within 45 mins.",
+          'order_a_dinner': "Order a Dinner",
+          'for_tomorrow': "For Tomorrow",
+          'add': "Add",
+          'no_internet': "Please Check Your Internet Connection!",
+          'no_internet_text': "No Internet",
+          'add_your_address_here': "Add your address here",
+          'your_address': "Your Address",
+          'your_addresses': "Your Addresses",
+          'addressed': "Addresses",
+          'empty_address_message': "No address found",
+          'edit': "Edit",
+          'delete': "Delete",
+          'add_new_address': "Add new address",
+          'house_no_flat_no': "House No./ Flat No.",
+          'society_apartment': "Society / Apartment",
+          'area_name': "Area Name",
+          'pin_code': "Pincode",
+          'enter_otp': "Enter OTP",
+          'unauthorized_message':
+              "We are signing you out as we found your account access from another device",
+          'save': "Save",
+          'required_field': 'Required Field',
+          'are_you_sure_you_want_to_delete': "Are you sure you want to delete?",
+          'yes': "Yes",
+          'no': "No",
+          // '': "",
+// '': "",
+// '': "",
+// '': "",
+// '': "",
+// '': "",
+        },
+        'hi_IN': {'login': 'Login'}
+      };
+}
