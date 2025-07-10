@@ -59,7 +59,9 @@ class Strings extends Translations {
           'are_you_sure_you_want_to_delete': "Are you sure you want to delete?",
           'yes': "Yes",
           'no': "No",
-          // '': "",
+          'search_an_area_or_address': "Search an area or address",
+
+          'confirm_and_save': "Confirm & Save",
 // '': "",
 // '': "",
 // '': "",

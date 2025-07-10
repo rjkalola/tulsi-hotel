@@ -39,6 +39,8 @@ class HomeTabController extends GetxController
           isMainViewVisible.value = true;
           dashboardData.value = response;
           dashboardController.cartCount.value = response.data?.cartCount ?? 0;
+          dashboardController.address.value = response.data?.address??"";
+          dashboardController.addressVisible.value = true;
         } else {
           // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
         }

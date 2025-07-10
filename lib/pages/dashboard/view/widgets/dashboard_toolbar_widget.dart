@@ -6,6 +6,7 @@ import 'package:tulsi_hotel/pages/dashboard/view/widgets/add_your_address_here.d
 import 'package:tulsi_hotel/pages/dashboard/view/widgets/address_details.dart';
 import 'package:tulsi_hotel/res/drawable.dart';
 import 'package:tulsi_hotel/utils/app_utils.dart';
+import 'package:tulsi_hotel/utils/string_helper.dart';
 import 'package:tulsi_hotel/widgets/shapes/badge_count_widget.dart';
 
 class DashboardToolbarWidget extends StatelessWidget {
@@ -38,7 +39,12 @@ class DashboardToolbarWidget extends StatelessWidget {
           SizedBox(
             width: 10,
           ),
-          Expanded(child: AddressDetails()),
+          Expanded(
+              child: Visibility(
+                  visible: controller.addressVisible.value,
+                  child: !StringHelper.isEmptyString(controller.address.value)
+                      ? AddressDetails()
+                      : AddYourAddressHere())),
           const SizedBox(width: 12),
           InkWell(
             borderRadius: BorderRadius.circular(12),

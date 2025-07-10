@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tulsi_hotel/pages/address/view/address_list_screen.dart';
+import 'package:tulsi_hotel/pages/address_location/view/address_location_screen.dart';
 import 'package:tulsi_hotel/pages/authentication/login/view/login_screen.dart';
 import 'package:tulsi_hotel/pages/authentication/otp_verification/view/otp_verification_screen.dart';
 import 'package:tulsi_hotel/pages/authentication/splash/splash_screen.dart';
@@ -28,6 +29,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.addressListScreen,
       page: () => AddressListScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.addressLocationScreen,
+      page: () => AddressLocationScreen(),
     ),
   ];
 }

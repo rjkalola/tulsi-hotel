@@ -30,7 +30,8 @@ class TextFieldBorder extends StatelessWidget {
       this.autovalidateMode,
       this.focusNode,
       this.onFieldSubmitted,
-      this.errorMaxLines});
+      this.errorMaxLines,
+      this.borderRadius});
 
   final TextEditingController? textEditingController;
   final String? hintText, labelText;
@@ -52,6 +53,7 @@ class TextFieldBorder extends StatelessWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onFieldSubmitted;
   final int? errorMaxLines;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -86,16 +88,16 @@ class TextFieldBorder extends StatelessWidget {
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: normalTextFieldBorderColor, width: 0.6),
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(borderRadius??8.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide:
               BorderSide(color: focusedTextFieldBorderColor, width: 0.8),
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(borderRadius??8.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: normalTextFieldBorderColor, width: 0.6),
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(borderRadius??8.0),
         ),
         hintText: hintText,
         labelText: labelText,

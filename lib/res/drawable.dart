@@ -37,4 +37,5 @@ class Drawable {
   static const String deliverTime = 'assets/images/deliver_time.svg';
   static const String searchLight = 'assets/images/search_light.svg';
   static const String dashboardDish = 'assets/images/dashboard_dish.png';
+  static const String centerLocationPin = 'assets/images/ic_center_location_pin.svg';
 }

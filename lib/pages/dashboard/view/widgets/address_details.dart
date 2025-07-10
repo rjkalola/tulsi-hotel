@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tulsi_hotel/pages/dashboard/controller/dashboard_controller.dart';
 import 'package:tulsi_hotel/res/colors.dart';
 import 'package:tulsi_hotel/routes/app_routes.dart';
 import 'package:tulsi_hotel/widgets/text/PrimaryTextViewInter.dart';
 
 class AddressDetails extends StatelessWidget {
-  const AddressDetails({super.key});
+  AddressDetails({super.key});
+
+  final controller = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class AddressDetails extends StatelessWidget {
             ],
           ),
           PrimaryTextViewInter(
-            "A-101, Krishna Apartment, Nikol",
+            controller.address.value??"",
             maxLine: 1,
             overflow: TextOverflow.ellipsis,
             color: primaryTextColor,

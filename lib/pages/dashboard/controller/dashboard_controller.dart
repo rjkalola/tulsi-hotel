@@ -1,18 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tulsi_hotel/pages/dashboard/controller/dashboard_repository.dart';
-import 'package:tulsi_hotel/pages/dashboard/model/dashboard_response.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/empty_tab.dart';
 import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/view/home_tab.dart';
 import 'package:tulsi_hotel/pages/dashboard/tabs/menu_tab/view/menu_tab.dart';
-import 'package:tulsi_hotel/routes/app_routes.dart';
-import 'package:tulsi_hotel/utils/app_storage.dart';
-import 'package:tulsi_hotel/utils/app_utils.dart';
-import 'package:tulsi_hotel/web_services/api_constants.dart';
-import 'package:tulsi_hotel/web_services/response/response_model.dart';
-import 'package:dio/dio.dart' as multi;
 
 class DashboardController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -20,9 +12,9 @@ class DashboardController extends GetxController
 
   RxBool isLoading = false.obs,
       isInternetNotAvailable = false.obs,
-      isMainViewVisible = false.obs;
+      isMainViewVisible = false.obs,addressVisible = false.obs;
   RxInt cartCount = 0.obs;
-  final title = 'dashboard'.tr.obs;
+  final title = 'dashboard'.tr.obs, address = "".obs;
   final selectedIndex = 0.obs;
   final searchController = TextEditingController().obs;
 
@@ -32,8 +24,8 @@ class DashboardController extends GetxController
     // StockListScreen(),
     HomeTab(),
     MenuTab(),
-    HomeTab(),
-    HomeTab(),
+    EmptyTab(),
+    EmptyTab(),
   ];
 
   @override
@@ -106,7 +98,6 @@ class DashboardController extends GetxController
       Get.offNamed(AppRoutes.categoryListScreen);
     }*/
   }
-
 
 /* void logoutAPI() async {
     String deviceModelName = await AppUtils.getDeviceName();

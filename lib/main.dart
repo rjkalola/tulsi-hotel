@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tulsi_hotel/pages/authentication/login/view/login_screen.dart';
-import 'package:tulsi_hotel/pages/authentication/otp_verification/view/otp_verification_screen.dart';
+import 'package:tulsi_hotel/pages/address_location/view/address_location_screen.dart';
 import 'package:tulsi_hotel/pages/authentication/splash/splash_screen.dart';
-import 'package:tulsi_hotel/pages/dashboard/view/dashboard_screen.dart';
 import 'package:tulsi_hotel/res/colors.dart';
 import 'package:tulsi_hotel/res/strings.dart';
 import 'package:tulsi_hotel/routes/app_pages.dart';

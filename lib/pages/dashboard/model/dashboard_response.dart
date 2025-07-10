@@ -25,13 +25,15 @@ class Data {
   int? tomorrowTodayLunch;
   int? tomorrowTodayDinner;
   int? cartCount;
+  String? address;
 
   Data(
       {this.showTodayLunch,
-        this.showTodayDinner,
-        this.tomorrowTodayLunch,
-        this.tomorrowTodayDinner,
-        this.cartCount});
+      this.showTodayDinner,
+      this.tomorrowTodayLunch,
+      this.tomorrowTodayDinner,
+      this.cartCount,
+      this.address});
 
   Data.fromJson(Map<String, dynamic> json) {
     showTodayLunch = json['show_today_lunch'];
@@ -39,6 +41,7 @@ class Data {
     tomorrowTodayLunch = json['tomorrow_today_lunch'];
     tomorrowTodayDinner = json['tomorrow_today_dinner'];
     cartCount = json['cart_count'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,6 +51,7 @@ class Data {
     data['tomorrow_today_lunch'] = this.tomorrowTodayLunch;
     data['tomorrow_today_dinner'] = this.tomorrowTodayDinner;
     data['cart_count'] = this.cartCount;
+    data['address'] = this.address;
     return data;
   }
 }

@@ -10,8 +10,7 @@ import 'package:tulsi_hotel/pages/address/model/adress_info.dart';
 import 'package:tulsi_hotel/pages/address/view/widgets/add_address_dialog.dart';
 import 'package:tulsi_hotel/pages/address/view/widgets/add_address_listener.dart';
 import 'package:tulsi_hotel/pages/common/listener/DialogButtonClickListener.dart';
-import 'package:tulsi_hotel/pages/dashboard/controller/dashboard_controller.dart';
-import 'package:tulsi_hotel/pages/dashboard/model/dashboard_response.dart';
+import 'package:tulsi_hotel/routes/app_routes.dart';
 import 'package:tulsi_hotel/utils/AlertDialogHelper.dart';
 import 'package:tulsi_hotel/utils/app_utils.dart';
 import 'package:tulsi_hotel/utils/location_service_new.dart';
@@ -127,13 +126,22 @@ class AddressListController extends GetxController
   }
 
   @override
-  void onAddAddress(AddressInfo info) {
+  Future<void> onAddAddress(AddressInfo info) async {
     print(info.flatNumber ?? "");
     print(info.apartment ?? "");
     print(info.area ?? "");
     print(info.pincode ?? "");
-    storeAddressApi(info);
+    // storeAddressApi(info);
     Get.back();
+
+    var arguments = {
+      AppConstants.intentKey.addressInfo: info,
+    };
+    var result = await Get.toNamed(AppRoutes.addressLocationScreen,
+        arguments: arguments);
+    if (result != null && result) {
+      addressListResponseApi();
+    }
   }
 
   void appLifeCycle() {
