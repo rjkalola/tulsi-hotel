@@ -146,4 +146,12 @@ class AppUtils {
       AppUtils.showToastMessage('copied_to_clip_board'.tr);
     }
   }
+
+  static void printLongString(String text) {
+    const int chunkSize = 800; // avoid logcat limit
+    for (int i = 0; i < text.length; i += chunkSize) {
+      final endIndex = (i + chunkSize < text.length) ? i + chunkSize : text.length;
+      print(text.substring(i, endIndex));
+    }
+  }
 }

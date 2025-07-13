@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/controller/home_tab_controller.dart';
-import 'package:tulsi_hotel/pages/dashboard/view/widgets/dashboard_item_box.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/view/widgets/dashboard_item_box.dart';
 import 'package:tulsi_hotel/widgets/custom_views/no_internet_widgets.dart';
 import 'package:tulsi_hotel/widgets/progressbar/CustomProgressbar.dart';
 import 'package:tulsi_hotel/widgets/text/PrimaryTextView.dart';
@@ -80,6 +80,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                                 1,
                             title: 'order_a_lunch'.tr,
                             time: 'lunch_time'.tr,
+                            productType: 1,
+                            dayType: 1,
                           ),
                           DashboardItemBox(
                             visible: (controller.dashboardData.value.data
@@ -88,6 +90,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                                 1,
                             title: 'order_a_dinner'.tr,
                             time: 'dinner_time'.tr,
+                            productType: 2,
+                            dayType: 1,
                           ),
                           Visibility(
                             visible: (controller.dashboardData.value.data
@@ -124,6 +128,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                                 1,
                             title: 'order_a_lunch'.tr,
                             time: 'lunch_time'.tr,
+                            productType: 1,
+                            dayType: 2,
                           ),
                           DashboardItemBox(
                             visible: (controller.dashboardData.value.data
@@ -132,6 +138,8 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
                                 1,
                             title: 'order_a_dinner'.tr,
                             time: 'dinner_time'.tr,
+                            productType: 2,
+                            dayType: 2,
                           ),
                           SizedBox(
                             height: 20,

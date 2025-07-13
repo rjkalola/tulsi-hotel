@@ -5,4 +5,6 @@ class AppRoutes {
   static const String dashboardScreen = '/dashboard_screen';
   static const String addressListScreen = '/address_list_screen';
   static const String addressLocationScreen = '/address_location_screen';
+  static const String productListScreen = '/product_list_screen';
+  static const String cartListScreen = '/cart_list_screen';
 }

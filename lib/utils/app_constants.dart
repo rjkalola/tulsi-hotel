@@ -22,6 +22,7 @@ class IntentKey {
   final String id = 'ID';
   final String phoneNumber = 'PHONE_NUMBER';
   final String addressInfo = 'ADDRESS_INFO';
+  final String productType = 'PRODUCT_TYPE';
 }
 
 class DialogIdentifier {

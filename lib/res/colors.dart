@@ -9,7 +9,8 @@ const secondaryTextColor = Color(0xff737373);
 const secondaryLightTextColor = Color(0xff606a74);
 const secondaryExtraLightTextColor = Color(0xff979797);
 const defaultAccentColor = Color(0xffFE8C00);
-const defaultAccentLightColor = Color(0xff89b0f4);
+Color defaultAccentLightColor =
+    Color(0xffFE8C00).withAlpha((0.3 * 255).round());
 const backgroundColor = Color(0xffffffff);
 const statusBarColor = Color(0xffffffff);
 const statusBarComponentColor = Colors.black;

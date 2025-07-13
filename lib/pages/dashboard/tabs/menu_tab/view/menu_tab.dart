@@ -36,8 +36,8 @@ class _MenuTabState extends State<MenuTab> with AutomaticKeepAliveClientMixin {
         body: controller.isInternetNotAvailable.value
             ? NoInternetWidget(
                 onPressed: () {
-                  // controller.isInternetNotAvailable.value = false;
-                  // controller.getDashboardUserPermissionsApi(true);
+                  controller.isInternetNotAvailable.value = false;
+                  controller.getMenuItemsApi(true);
                 },
               )
             : ModalProgressHUD(

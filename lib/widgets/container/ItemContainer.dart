@@ -17,7 +17,7 @@ class ItemContainer extends StatelessWidget {
       margin: margin,
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border: Border.all(width: 0.6, color: AppUtils.haxColor("#d6d6d6")),
+        border: Border.all(width: 0.4, color: AppUtils.haxColor("#878787")),
         borderRadius: BorderRadius.circular(6),
       ),
       child: child,

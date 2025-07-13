@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:tulsi_hotel/res/colors.dart';
 
 class CustomCheckbox extends StatelessWidget {
   final ValueChanged<bool?>? onValueChange;
@@ -12,6 +13,8 @@ class CustomCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Checkbox(
-        activeColor: Colors.green, value: mValue, onChanged: onValueChange);
+        activeColor: defaultAccentColor,
+        value: mValue,
+        onChanged: onValueChange);
   }
 }

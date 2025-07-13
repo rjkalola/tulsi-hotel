@@ -25,6 +25,9 @@ class ApiConstants {
   static String getAddresses = '$appUrl/addresses';
   static String storeAddress = '$appUrl/store-address';
   static String deleteAddress = '$appUrl/delete-address';
+  static String getProducts = '$appUrl/products';
+  static String storeProduct = '$appUrl/store-product';
+  static String checkout = '$appUrl/checkout';
 
   static const ApiMethod method = ApiMethod();
 }

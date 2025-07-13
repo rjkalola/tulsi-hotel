@@ -128,7 +128,7 @@ class MenuItemsList extends StatelessWidget {
                   ),
                   child: Icon(
                     Icons.remove,
-                    color: Colors.grey,
+                    color: Colors.black,
                     size: 22,
                   ),
                 ),

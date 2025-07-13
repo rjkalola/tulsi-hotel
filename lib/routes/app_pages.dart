@@ -4,7 +4,9 @@ import 'package:tulsi_hotel/pages/address_location/view/address_location_screen.
 import 'package:tulsi_hotel/pages/authentication/login/view/login_screen.dart';
 import 'package:tulsi_hotel/pages/authentication/otp_verification/view/otp_verification_screen.dart';
 import 'package:tulsi_hotel/pages/authentication/splash/splash_screen.dart';
+import 'package:tulsi_hotel/pages/cart/view/cart_list_screen.dart';
 import 'package:tulsi_hotel/pages/dashboard/view/dashboard_screen.dart';
+import 'package:tulsi_hotel/pages/product_list/view/product_list_screen.dart';
 
 import 'app_routes.dart';
 
@@ -33,6 +35,14 @@ class AppPages {
     GetPage(
       name: AppRoutes.addressLocationScreen,
       page: () => AddressLocationScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.productListScreen,
+      page: () => ProductListScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.cartListScreen,
+      page: () => CartListScreen(),
     ),
   ];
 }
