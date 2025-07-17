@@ -30,7 +30,7 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
             ? NoInternetWidget(
                 onPressed: () {
                   controller.isInternetNotAvailable.value = false;
-                  controller.dashboardResponseApi();
+                  controller.dashboardResponseApi(true);
                 },
               )
             : ModalProgressHUD(

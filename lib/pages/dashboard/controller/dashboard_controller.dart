@@ -1,10 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tulsi_hotel/pages/dashboard/controller/dashboard_repository.dart';
+import 'package:tulsi_hotel/pages/dashboard/model/dashboard_response.dart';
 import 'package:tulsi_hotel/pages/dashboard/tabs/empty_tab.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/controller/home_tab_controller.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/controller/home_tab_repository.dart';
 import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/view/home_tab.dart';
 import 'package:tulsi_hotel/pages/dashboard/tabs/menu_tab/view/menu_tab.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/order_tab/view/orders_tab.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/profile_tab/view/profile_tab.dart';
+import 'package:dio/dio.dart' as multi;
+import 'package:tulsi_hotel/utils/app_utils.dart';
+import 'package:tulsi_hotel/web_services/api_constants.dart';
+import 'package:tulsi_hotel/web_services/response/response_model.dart';
+
+import '../../../routes/app_routes.dart';
+import '../../../utils/app_constants.dart';
 
 class DashboardController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -12,7 +26,8 @@ class DashboardController extends GetxController
 
   RxBool isLoading = false.obs,
       isInternetNotAvailable = false.obs,
-      isMainViewVisible = false.obs,addressVisible = false.obs;
+      isMainViewVisible = false.obs,
+      addressVisible = false.obs;
   RxInt cartCount = 0.obs;
   final title = 'dashboard'.tr.obs, address = "".obs;
   final selectedIndex = 0.obs;
@@ -24,8 +39,8 @@ class DashboardController extends GetxController
     // StockListScreen(),
     HomeTab(),
     MenuTab(),
-    EmptyTab(),
-    EmptyTab(),
+    OrdersTab(),
+    ProfileTab(),
   ];
 
   @override
@@ -33,12 +48,12 @@ class DashboardController extends GetxController
     super.onInit();
     var arguments = Get.arguments;
     if (arguments != null) {
-      // selectedIndex.value = arguments[AppConstants.intentKey.dashboardTabIndex];
+      selectedIndex.value = arguments[AppConstants.intentKey.dashboardTabIndex];
     }
     pageController = PageController(initialPage: selectedIndex.value);
     setTitle(selectedIndex.value);
 
-    // dashboardResponseApi();
+    dashboardResponseApi(false);
     // getSettingApi();
   }
 
@@ -99,22 +114,23 @@ class DashboardController extends GetxController
     }*/
   }
 
-/* void logoutAPI() async {
-    String deviceModelName = await AppUtils.getDeviceName();
+  void dashboardResponseApi(bool isProgress) async {
     Map<String, dynamic> map = {};
-    map["model_name"] = deviceModelName;
-    // map["is_inventory"] = "true";
+    map["language"] = 2;
     multi.FormData formData = multi.FormData.fromMap(map);
-    print("request parameter:" + map.toString());
-    isLoading.value = true;
-    _api.logout(
+    isLoading.value = isProgress;
+    HomeTabRepository().dashboardResponse(
       formData: formData,
       onSuccess: (ResponseModel responseModel) {
-        if (responseModel.statusCode == 200) {
-          Get.find<AppStorage>().clearAllData();
-          Get.offAllNamed(AppRoutes.loginScreen);
+        DashboardResponse response =
+            DashboardResponse.fromJson(jsonDecode(responseModel.result!));
+        if (response.isSuccess ?? false) {
+          isMainViewVisible.value = true;
+          cartCount.value = response.data?.cartCount ?? 0;
+          address.value = response.data?.address ?? "";
+          addressVisible.value = true;
         } else {
-          AppUtils.showSnackBarMessage(responseModel.statusMessage!);
+          // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
         }
         isLoading.value = false;
       },
@@ -122,10 +138,18 @@ class DashboardController extends GetxController
         isLoading.value = false;
         if (error.statusCode == ApiConstants.CODE_NO_INTERNET_CONNECTION) {
           AppUtils.showSnackBarMessage('no_internet'.tr);
-        } else if (error.statusMessage!.isNotEmpty) {
-          AppUtils.showSnackBarMessage(error.statusMessage!);
         }
       },
     );
-  }*/
+  }
+
+  moveToAddress() async {
+    var result = await Get.toNamed(AppRoutes.addressListScreen);
+    Get.put(HomeTabController()).dashboardResponseApi(false);
+  }
+
+  Future<void> moveToCart() async {
+    var result = await Get.toNamed(AppRoutes.cartListScreen);
+    Get.put(HomeTabController()).dashboardResponseApi(false);
+  }
 }

@@ -60,7 +60,7 @@ class AddAddressDialogState extends State<AddAddressDialog> {
             padding: EdgeInsets.fromLTRB(16, 16, 16, 60),
             decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
             child: SingleChildScrollView(
               child: Form(
                 key: formKey,

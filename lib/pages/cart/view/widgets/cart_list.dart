@@ -27,14 +27,14 @@ class CartList extends StatelessWidget {
         itemBuilder: (context, position) {
           CartInfo info = cartList[position];
           return ((info.productId ?? 0) != 0)
-              ? productItem(info)
-              : singleItem(info);
+              ? productItem(info, position)
+              : singleItem(info, position);
         },
         itemCount: cartList.length,
         separatorBuilder: (context, position) => Container()));
   }
 
-  Widget singleItem(CartInfo info) => ItemContainer(
+  Widget singleItem(CartInfo info, int index) => ItemContainer(
         width: double.infinity,
         margin: EdgeInsets.only(top: 6, bottom: 6, left: 14, right: 14),
         padding: const EdgeInsets.fromLTRB(14, 9, 14, 9),
@@ -86,14 +86,14 @@ class CartList extends StatelessWidget {
               width: 100,
               child: Stack(
                 alignment: Alignment.center,
-                children: [addButton(info), updateQuantityView(info)],
+                children: [addButton(info), updateQuantityView(info, index)],
               ),
             )
           ],
         ),
       );
 
-  Widget productItem(CartInfo info) => ItemContainer(
+  Widget productItem(CartInfo info, int index) => ItemContainer(
       width: double.infinity,
       margin: EdgeInsets.only(top: 6, bottom: 6, left: 14, right: 14),
       padding: const EdgeInsets.fromLTRB(0, 9, 0, 9),
@@ -169,7 +169,10 @@ class CartList extends StatelessWidget {
                   width: 100,
                   child: Stack(
                     alignment: Alignment.center,
-                    children: [addButton(info), updateQuantityView(info)],
+                    children: [
+                      addButton(info),
+                      updateQuantityView(info, index)
+                    ],
                   ),
                 )
               ],
@@ -192,7 +195,7 @@ class CartList extends StatelessWidget {
             }),
       );
 
-  Widget updateQuantityView(CartInfo info) => Visibility(
+  Widget updateQuantityView(CartInfo info, int index) => Visibility(
         visible: (info.quantity ?? 0) > 0,
         child: SizedBox(
           width: 100,
@@ -206,7 +209,8 @@ class CartList extends StatelessWidget {
                   controller.updateCartItemApi(
                       isProgress: true,
                       cartId: info.id ?? 0,
-                      quantity: updateQty);
+                      quantity: updateQty,
+                      index: index);
                 },
                 child: Container(
                   padding: EdgeInsets.all(2),
@@ -238,7 +242,8 @@ class CartList extends StatelessWidget {
                   controller.updateCartItemApi(
                       isProgress: true,
                       cartId: info.id ?? 0,
-                      quantity: updateQty);
+                      quantity: updateQty,
+                      index: index);
                 },
                 child: Container(
                   width: 30,

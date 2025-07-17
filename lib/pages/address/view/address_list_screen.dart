@@ -62,7 +62,8 @@ class _UserListScreenState extends State<AddressListScreen> {
                                     margin: EdgeInsets.all(16),
                                     buttonText: 'add_new_address'.tr,
                                     onPressed: () {
-                                      controller.showSelectShiftDialog(AddressInfo());
+                                      controller
+                                          .showSelectShiftDialog(AddressInfo());
                                     })
                                 : Container()
                           ],

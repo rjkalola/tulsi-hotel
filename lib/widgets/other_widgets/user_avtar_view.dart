@@ -30,7 +30,7 @@ class UserAvtarView extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.all(
-              Radius.circular(45),
+              Radius.circular(imageSize! / 2),
             ),
             border: Border.all(
               width: imageBorderWidth ?? 1,

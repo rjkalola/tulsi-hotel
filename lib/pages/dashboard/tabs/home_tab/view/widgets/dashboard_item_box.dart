@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tulsi_hotel/pages/authentication/login/view/widgets/horizontal_dotted_line.dart';
+import 'package:tulsi_hotel/pages/dashboard/tabs/home_tab/controller/home_tab_controller.dart';
 import 'package:tulsi_hotel/res/drawable.dart';
 import 'package:tulsi_hotel/routes/app_routes.dart';
 import 'package:tulsi_hotel/utils/image_utils.dart';
@@ -21,6 +22,7 @@ class DashboardItemBox extends StatelessWidget {
   String title, time;
   bool visible;
   int productType = 0, dayType = 0;
+  final controller = Get.put(HomeTabController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,7 @@ class DashboardItemBox extends StatelessWidget {
       visible: visible,
       child: GestureDetector(
         onTap: () {
-          var arguments = {
-            AppConstants.intentKey.productType: productType,
-          };
-          Get.toNamed(AppRoutes.productListScreen, arguments: arguments);
+          controller.moveToProducts(productType, dayType);
         },
         child: Container(
           margin: const EdgeInsets.only(top: 14),

@@ -33,6 +33,7 @@ class AddressListController extends GetxController
   final locationService = LocationServiceNew();
   String latitude = "", longitude = "", location = "";
   int selectedAddressId = 0;
+  int selectedAddressIndex = 0;
 
   @override
   Future<void> onInit() async {
@@ -55,6 +56,7 @@ class AddressListController extends GetxController
           isMainViewVisible.value = true;
           addressList.clear();
           addressList.addAll(response.data ?? []);
+          addressList.refresh();
         } else {
           // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
         }
@@ -84,10 +86,65 @@ class AddressListController extends GetxController
     _api.storeAddress(
       formData: formData,
       onSuccess: (ResponseModel responseModel) {
+        AddressListResponse response =
+            AddressListResponse.fromJson(jsonDecode(responseModel.result!));
+        if (response.isSuccess ?? false) {
+          addressList.clear();
+          addressList.addAll(response.data ?? []);
+          addressList.refresh();
+        } else {
+          // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
+        }
+        isLoading.value = false;
+      },
+      onError: (ResponseModel error) {
+        isLoading.value = false;
+        if (error.statusCode == ApiConstants.CODE_NO_INTERNET_CONNECTION) {
+          AppUtils.showSnackBarMessage('no_internet'.tr);
+        }
+      },
+    );
+  }
+
+  void deleteAddressApi() async {
+    Map<String, dynamic> map = {};
+    map["id"] = selectedAddressId;
+    multi.FormData formData = multi.FormData.fromMap(map);
+    // isLoading.value = true;
+    _api.deleteAddress(
+      formData: formData,
+      onSuccess: (ResponseModel responseModel) {
         BaseResponse response =
             BaseResponse.fromJson(jsonDecode(responseModel.result!));
         if (response.isSuccess ?? false) {
-          addressListResponseApi();
+        } else {
+          // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
+        }
+        isLoading.value = false;
+      },
+      onError: (ResponseModel error) {
+        isLoading.value = false;
+        if (error.statusCode == ApiConstants.CODE_NO_INTERNET_CONNECTION) {
+          AppUtils.showSnackBarMessage('no_internet'.tr);
+        }
+      },
+    );
+  }
+
+  void defaultAddressApi(int id) async {
+    Map<String, dynamic> map = {};
+    map["id"] = id;
+    multi.FormData formData = multi.FormData.fromMap(map);
+    isLoading.value = true;
+    _api.defaultAddress(
+      formData: formData,
+      onSuccess: (ResponseModel responseModel) {
+        AddressListResponse response =
+        AddressListResponse.fromJson(jsonDecode(responseModel.result!));
+        if (response.isSuccess ?? false) {
+          addressList.clear();
+          addressList.addAll(response.data ?? []);
+          addressList.refresh();
         } else {
           // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
         }
@@ -112,8 +169,9 @@ class AddressListController extends GetxController
         isScrollControlled: true);
   }
 
-  showDeleteAddressDialog(int id) async {
+  showDeleteAddressDialog(int id, int index) async {
     selectedAddressId = id;
+    selectedAddressIndex = index;
     AlertDialogHelper.showAlertDialog(
         "",
         'are_you_sure_you_want_to_delete'.tr,
@@ -182,5 +240,7 @@ class AddressListController extends GetxController
   @override
   void onPositiveButtonClicked(String dialogIdentifier) {
     Get.back();
+    addressList.removeAt(selectedAddressIndex);
+    deleteAddressApi();
   }
 }

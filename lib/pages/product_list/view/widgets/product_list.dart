@@ -143,8 +143,9 @@ class ProductList extends StatelessWidget {
                   : defaultAccentLightColor,
               onPressed: () {
                 if (isEnableOrderButton) {
-                  controller.resetCheckedItems(productPosition);
-                  // controller.storeProductApi(productList[productPosition],productPosition);
+                  // controller.resetCheckedItems(productPosition);
+                  controller.storeProductApi(
+                      productList[productPosition], productPosition);
                 } else {
                   AppUtils.showToastMessage('please_select_all_items'.tr);
                 }

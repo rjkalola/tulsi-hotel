@@ -45,17 +45,19 @@ class ImageUtils {
       BoxFit? fit}) {
     return !StringHelper.isEmptyString(url)
         ? ClipRRect(
-            borderRadius: BorderRadius.circular(radius ?? 45),
-            child: CachedNetworkImage(
-              imageUrl: url ?? "",
-              fit: fit ?? BoxFit.cover,
-              width: width,
-              height: height,
-              placeholder: (context, url) =>
-                  getEmptyUserViewContainer(width: width, height: height),
-              errorWidget: (context, url, error) =>
-                  getEmptyUserViewContainer(width: width, height: height),
-            ),
+            borderRadius: BorderRadius.circular(width / 2),
+            child: url!.startsWith("http")
+                ? CachedNetworkImage(
+                    imageUrl: url ?? "",
+                    fit: fit ?? BoxFit.cover,
+                    width: width,
+                    height: height,
+                    placeholder: (context, url) =>
+                        getEmptyUserViewContainer(width: width, height: height),
+                    errorWidget: (context, url, error) =>
+                        getEmptyUserViewContainer(width: width, height: height),
+                  )
+                : setCircularFileImage(url, width, height, fit ?? BoxFit.cover),
           )
         : getEmptyUserViewContainer(width: width, height: height);
   }

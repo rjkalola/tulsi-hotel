@@ -7,14 +7,16 @@ class CartListResponse {
   int? taxAmount;
   int? deliveryCharge;
   int? finalAmount;
+  String? address;
 
   CartListResponse(
       {this.isSuccess,
-        this.data,
-        this.totalAmount,
-        this.taxAmount,
-        this.deliveryCharge,
-        this.finalAmount});
+      this.data,
+      this.totalAmount,
+      this.taxAmount,
+      this.deliveryCharge,
+      this.finalAmount,
+      this.address});
 
   CartListResponse.fromJson(Map<String, dynamic> json) {
     isSuccess = json['IsSuccess'];
@@ -28,6 +30,7 @@ class CartListResponse {
     taxAmount = json['taxAmount'];
     deliveryCharge = json['deliveryCharge'];
     finalAmount = json['finalAmount'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,8 +43,7 @@ class CartListResponse {
     data['taxAmount'] = this.taxAmount;
     data['deliveryCharge'] = this.deliveryCharge;
     data['finalAmount'] = this.finalAmount;
+    data['address'] = this.address;
     return data;
   }
 }
-
-

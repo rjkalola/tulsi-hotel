@@ -61,12 +61,15 @@ class DashBoardScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DashboardToolbarWidget(),
-                      SearchTextField(
-                          padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-                          controller: controller.searchController,
-                          hint: 'search_for_tiffins_thali_dishes'.tr,
-                          label: 'search_for_tiffins_thali_dishes'.tr,
-                          isClearVisible: false.obs),
+                      Visibility(
+                        visible: controller.selectedIndex.value != 3,
+                        child: SearchTextField(
+                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            controller: controller.searchController,
+                            hint: 'search_for_tiffins_thali_dishes'.tr,
+                            label: 'search_for_tiffins_thali_dishes'.tr,
+                            isClearVisible: false.obs),
+                      ),
                       Expanded(
                           child: PageView(
                         controller: controller.pageController,

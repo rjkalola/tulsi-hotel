@@ -9,6 +9,9 @@ import 'package:tulsi_hotel/utils/app_utils.dart';
 import 'package:tulsi_hotel/web_services/api_constants.dart';
 import 'package:tulsi_hotel/web_services/response/response_model.dart';
 
+import '../../../../../routes/app_routes.dart';
+import '../../../../../utils/app_constants.dart';
+
 class HomeTabController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final _api = HomeTabRepository();
@@ -22,14 +25,14 @@ class HomeTabController extends GetxController
   @override
   Future<void> onInit() async {
     super.onInit();
-    dashboardResponseApi();
+    dashboardResponseApi(true);
   }
 
-  void dashboardResponseApi() async {
+  void dashboardResponseApi(bool isProgress) async {
     Map<String, dynamic> map = {};
     map["language"] = 2;
     multi.FormData formData = multi.FormData.fromMap(map);
-    isLoading.value = true;
+    isLoading.value = isProgress;
     _api.dashboardResponse(
       formData: formData,
       onSuccess: (ResponseModel responseModel) {
@@ -39,7 +42,7 @@ class HomeTabController extends GetxController
           isMainViewVisible.value = true;
           dashboardData.value = response;
           dashboardController.cartCount.value = response.data?.cartCount ?? 0;
-          dashboardController.address.value = response.data?.address??"";
+          dashboardController.address.value = response.data?.address ?? "";
           dashboardController.addressVisible.value = true;
         } else {
           // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
@@ -53,5 +56,17 @@ class HomeTabController extends GetxController
         }
       },
     );
+  }
+
+  moveToProducts(int productType, int dayType) async {
+    var arguments = {
+      AppConstants.intentKey.productType: productType,
+      AppConstants.intentKey.dayType: dayType,
+    };
+    var result =
+        await Get.toNamed(AppRoutes.productListScreen, arguments: arguments);
+    if (result != null && result) {
+      dashboardResponseApi(false);
+    }
   }
 }

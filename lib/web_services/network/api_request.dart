@@ -192,14 +192,15 @@ class ApiRequest {
           int errorCode = response.data['ErrorCode'] ?? 0;
           print("isSuccess:" + isSuccess.toString());
           print("errorCode:" + errorCode.toString());
-          if (errorCode == 401) {
+          if (errorCode == 401 && url != ApiConstants.getProfileInfo) {
             showUnAuthorizedDialog();
             responseModel = returnResponse(false, null, 0, "");
           } else {
             responseModel = returnResponse(true, jsonEncode(response.data),
                 response.statusCode, response.statusMessage);
           }
-        } else if (response.statusCode == 401) {
+        } else if (response.statusCode == 401 &&
+            url != ApiConstants.getProfileInfo) {
           showUnAuthorizedDialog();
           responseModel = returnResponse(false, null, 0, "");
         } else {
@@ -222,7 +223,7 @@ class ApiRequest {
       String message = "";
       final data = e.response?.data;
       final statusCode = e.response?.statusCode;
-      if (statusCode == 401) {
+      if (statusCode == 401 && url != ApiConstants.getProfileInfo) {
         showUnAuthorizedDialog();
         responseModel = returnResponse(false, null, 0, "");
       } else {

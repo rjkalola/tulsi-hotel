@@ -6,6 +6,7 @@ class UserInfo {
   String? image;
   String? apiToken;
   int? profileCompleted;
+  String? address;
 
   UserInfo(
       {this.id,
@@ -14,7 +15,8 @@ class UserInfo {
       this.phoneNumber,
       this.image,
       this.apiToken,
-      this.profileCompleted});
+      this.profileCompleted,
+      this.address});
 
   UserInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -26,6 +28,7 @@ class UserInfo {
     image = json['image'];
     apiToken = json['api_token'];
     profileCompleted = json['profile_completed'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +40,7 @@ class UserInfo {
     data['image'] = this.image;
     data['api_token'] = this.apiToken;
     data['profile_completed'] = this.profileCompleted;
+    data['address'] = this.address;
     return data;
   }
 }

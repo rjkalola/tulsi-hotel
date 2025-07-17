@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tulsi_hotel/res/colors.dart';
+import 'package:tulsi_hotel/res/drawable.dart';
 
 class RightArrowWidget extends StatelessWidget {
   const RightArrowWidget({super.key, this.size, this.color});
@@ -9,10 +11,12 @@ class RightArrowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      Icons.keyboard_arrow_right,
-      size: size ?? 26,
-      color: color ?? Colors.grey,
+    return SvgPicture.asset(
+      width: size ?? 15,
+      height: size ?? 15,
+      Drawable.rightArrowItem,
+      colorFilter:
+          ColorFilter.mode(color ?? defaultAccentColor, BlendMode.srcIn),
     );
   }
 }

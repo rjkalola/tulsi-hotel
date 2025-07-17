@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:tulsi_hotel/pages/address/model/adress_info.dart';
 import 'package:tulsi_hotel/pages/product_list/controller/product_list_controller.dart';
 import 'package:tulsi_hotel/pages/product_list/view/widgets/product_list.dart';
@@ -21,33 +22,44 @@ class ProductListScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: backgroundColor,
         statusBarIconBrightness: Brightness.dark));
-    return DefaultTabController(
-      length: 2,
-      child: Container(
-        color: backgroundColor,
-        width: double.infinity,
-        height: double.infinity,
-        child: SafeArea(
-            child: Scaffold(
-              body: Column(
+    return Obx(
+      () => DefaultTabController(
+        length: 2,
+        initialIndex: controller.currentIndex.value,
+        child: Container(
+          color: backgroundColor,
+          width: double.infinity,
+          height: double.infinity,
+          child: SafeArea(
+              child: Scaffold(
+            body: ModalProgressHUD(
+              inAsyncCall: controller.isLoading.value,
+              opacity: 0,
+              progressIndicator: const CustomProgressbar(),
+              child: Column(
                 children: [
                   ProductListToolbarWidget(),
                   TabBarWidget(),
                   Expanded(
-                    child: Obx(() => Container(
+                    child: Container(
                       padding: EdgeInsets.only(top: 18),
                       color: backgroundColor,
-                      child: controller.isLoading.value
-                          ? Center(child: CustomProgressbar())
-                          : (controller.productList.isNotEmpty ? ProductList(
-                          productList: controller.productList,
-                          isLoading: controller.isLoading):Center(
-                          child: PrimaryTextViewInter('no_data_found'.tr))),
-                    ),),
+                      child: Visibility(
+                          visible: controller.isMainViewVisible.value,
+                          child: controller.productList.isNotEmpty
+                              ? ProductList(
+                                  productList: controller.productList,
+                                  isLoading: controller.isLoading)
+                              : Center(
+                                  child: PrimaryTextViewInter(
+                                      'no_data_found'.tr))),
+                    ),
                   ),
                 ],
               ),
-            )),
+            ),
+          )),
+        ),
       ),
     );
   }

@@ -5,6 +5,11 @@ import 'package:get/get.dart';
 import 'package:tulsi_hotel/utils/app_storage.dart';
 
 class UserUtils {
+  static UserInfo getUserInfo() {
+    UserInfo info = Get.find<AppStorage>().getUserInfo();
+    return info;
+  }
+
   static int getLoginUserId() {
     UserInfo info = Get.find<AppStorage>().getUserInfo();
     return info.id ?? 0;

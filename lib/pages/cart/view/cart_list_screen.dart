@@ -3,21 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:tulsi_hotel/pages/address/model/adress_info.dart';
 import 'package:tulsi_hotel/pages/cart/controller/cart_list_controller.dart';
 import 'package:tulsi_hotel/pages/cart/view/widgets/add_your_comments.dart';
 import 'package:tulsi_hotel/pages/cart/view/widgets/bill_summery_details.dart';
 import 'package:tulsi_hotel/pages/cart/view/widgets/cart_list.dart';
-import 'package:tulsi_hotel/pages/cart/view/widgets/cart_list_toolbar_widget.dart';
+import 'package:tulsi_hotel/pages/cart/view/widgets/cart_list_toolbar.dart';
 import 'package:tulsi_hotel/pages/cart/view/widgets/delivery_time_note.dart';
 import 'package:tulsi_hotel/pages/cart/view/widgets/empty_cart_view.dart';
 import 'package:tulsi_hotel/pages/cart/view/widgets/pay_button.dart';
 import 'package:tulsi_hotel/res/colors.dart';
-import 'package:tulsi_hotel/res/drawable.dart';
-import 'package:tulsi_hotel/utils/image_utils.dart';
-import 'package:tulsi_hotel/utils/string_helper.dart';
 import 'package:tulsi_hotel/widgets/progressbar/CustomProgressbar.dart';
-import 'package:tulsi_hotel/widgets/text/TitleTextView.dart';
 
 class CartListScreen extends StatelessWidget {
   final controller = Get.put(CartListController());
@@ -42,7 +37,7 @@ class CartListScreen extends StatelessWidget {
               color: backgroundColor,
               child: Column(
                 children: [
-                  CartListToolbarWidget(),
+                  CartListToolbar(),
                   SizedBox(
                     height: 14,
                   ),

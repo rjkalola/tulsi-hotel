@@ -42,4 +42,9 @@ class Drawable {
   static const String subDirectoryArrowRight =
       'assets/images/ic_subdirectory_arrow_right.svg';
   static const String emptyCartIcon = 'assets/images/ic_empty_cart.svg';
+  static const String mailIcon = 'assets/images/ic_mail.svg';
+  static const String phoneIcon = 'assets/images/ic_phone.svg';
+  static const String rightArrowItem = 'assets/images/chevron_forward.svg';
+  static const String logoutIcon = 'assets/images/logout.svg';
+  static const String checkCircle = 'assets/images/check_circle.svg';
 }

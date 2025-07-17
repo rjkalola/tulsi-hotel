@@ -7,6 +7,7 @@ class AddressInfo {
   double? latitude;
   double? longitude;
   int? totalDistance;
+  int? isDefault;
 
   AddressInfo(
       {this.id,
@@ -16,7 +17,8 @@ class AddressInfo {
       this.pincode,
       this.latitude,
       this.longitude,
-      this.totalDistance});
+      this.totalDistance,
+      this.isDefault});
 
   AddressInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -27,6 +29,7 @@ class AddressInfo {
     latitude = json['latitude'];
     longitude = json['longitude'];
     totalDistance = json['total_distance'];
+    isDefault = json['is_default'];
   }
 
   Map<String, dynamic> toJson() {
@@ -39,6 +42,7 @@ class AddressInfo {
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
     data['total_distance'] = this.totalDistance;
+    data['is_default'] = this.isDefault;
     return data;
   }
 }

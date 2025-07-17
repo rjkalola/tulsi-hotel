@@ -28,6 +28,12 @@ class ApiConstants {
   static String getProducts = '$appUrl/products';
   static String storeProduct = '$appUrl/store-product';
   static String checkout = '$appUrl/checkout';
+  static String placeOrder = '$appUrl/place-order';
+  static String defaultAddress = '$appUrl/default-address';
+  static String getProfileInfo = '$appUrl/get-profile-info';
+  static String storeProfileInfo = '$appUrl/store-profile-info';
+  static String logout = '$appUrl/logout';
+  static String getOrders = '$appUrl/orders';
 
   static const ApiMethod method = ApiMethod();
 }

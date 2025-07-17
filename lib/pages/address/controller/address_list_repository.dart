@@ -57,4 +57,22 @@ class AddressListRepository {
       onError: (error) => {if (onError != null) onError(error)},
     );
   }
+
+  void defaultAddress({
+    multi.FormData? formData,
+    Function(ResponseModel responseModel)? onSuccess,
+    Function(ResponseModel error)? onError,
+  }) {
+    ApiRequest(
+            url: ApiConstants.defaultAddress,
+            apiMethod: ApiConstants.method.post,
+            formData: formData,
+            isFormData: true)
+        .apiRequest(
+      onSuccess: (data) {
+        onSuccess!(data);
+      },
+      onError: (error) => {if (onError != null) onError(error)},
+    );
+  }
 }

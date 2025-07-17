@@ -46,25 +46,25 @@ class AddressToolbarWidget extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
         const SizedBox(width: 12),
-        Align(
-          alignment: Alignment.centerRight,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            onTap: () => Get.back(),
-            child: Container(
-              padding: EdgeInsets.all(8),
-              width: 34,
-              height: 34,
-              decoration: AppUtils.getGrayBorderDecoration(
-                  color: Color(0xFFFFF5E6), radius: 4),
-              child: SvgPicture.asset(
-                Drawable.cart,
-                width: 16,
-                height: 16,
-              ),
-            ),
-          ),
-        ),
+        // Align(
+        //   alignment: Alignment.centerRight,
+        //   child: InkWell(
+        //     borderRadius: BorderRadius.circular(12),
+        //     onTap: () => Get.back(),
+        //     child: Container(
+        //       padding: EdgeInsets.all(8),
+        //       width: 34,
+        //       height: 34,
+        //       decoration: AppUtils.getGrayBorderDecoration(
+        //           color: Color(0xFFFFF5E6), radius: 4),
+        //       child: SvgPicture.asset(
+        //         Drawable.cart,
+        //         width: 16,
+        //         height: 16,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ]),
     );
   }

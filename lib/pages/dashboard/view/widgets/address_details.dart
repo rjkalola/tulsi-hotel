@@ -14,7 +14,7 @@ class AddressDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.addressListScreen);
+        controller.moveToAddress();
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class AddressDetails extends StatelessWidget {
             ],
           ),
           PrimaryTextViewInter(
-            controller.address.value??"",
+            controller.address.value ?? "",
             maxLine: 1,
             overflow: TextOverflow.ellipsis,
             color: primaryTextColor,

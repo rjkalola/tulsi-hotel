@@ -23,12 +23,17 @@ class IntentKey {
   final String phoneNumber = 'PHONE_NUMBER';
   final String addressInfo = 'ADDRESS_INFO';
   final String productType = 'PRODUCT_TYPE';
+  final String dayType = 'DAY_TYPE';
+  final String dashboardTabIndex = 'DASHBOARD_TAB_INDEX';
+
 }
 
 class DialogIdentifier {
   const DialogIdentifier(); // <---
   final String logout = 'logout';
   final String delete = 'DELETE';
+  final String attachmentOptionsList = 'ATTACHMENT_OPTIONS_LIST';
+
 }
 
 class SharedPreferenceKey {
@@ -40,6 +45,8 @@ class SharedPreferenceKey {
 class Action {
   const Action(); //
   final String items = "ITEMS";
+  final String selectImageFromCamera = 'SELECT_IMAGE_FROM_CAMERA';
+  final String selectImageFromGallery = 'SELECT_IMAGE_FROM_GALLERY';
 }
 
 class AttachmentType {

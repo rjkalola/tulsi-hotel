@@ -66,7 +66,7 @@ class ProductListToolbarWidget extends StatelessWidget {
                     width: 16,
                     height: 16,
                   ),
-                  Visibility(
+                  Obx(() => Visibility(
                     visible: controller.cartCount.value > 0,
                     child: Align(
                       alignment: Alignment.topRight,
@@ -74,7 +74,7 @@ class ProductListToolbarWidget extends StatelessWidget {
                         count: controller.cartCount.value,
                       ),
                     ),
-                  ),
+                  ),),
                 ],
               ),
             ),

@@ -22,6 +22,24 @@ class CartListRepository {
     );
   }
 
+  void placeOrder({
+    multi.FormData? formData,
+    Function(ResponseModel responseModel)? onSuccess,
+    Function(ResponseModel error)? onError,
+  }) {
+    ApiRequest(
+        url: ApiConstants.placeOrder,
+        apiMethod: ApiConstants.method.post,
+        formData: formData,
+        isFormData: true)
+        .apiRequest(
+      onSuccess: (data) {
+        onSuccess!(data);
+      },
+      onError: (error) => {if (onError != null) onError(error)},
+    );
+  }
+
   void storeProduct({
     dynamic data,
     Function(ResponseModel responseModel)? onSuccess,

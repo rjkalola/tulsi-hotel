@@ -51,32 +51,56 @@ class AddressList extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 22, top: 6),
                           child: Row(
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  controller.showSelectShiftDialog(info);
-                                },
-                                child: PrimaryTextViewInter(
-                                  'edit'.tr,
-                                  color: defaultAccentColor,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        controller.showSelectShiftDialog(info);
+                                      },
+                                      child: PrimaryTextViewInter(
+                                        'edit'.tr,
+                                        color: defaultAccentColor,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.showDeleteAddressDialog(
+                                            info.id ?? 0,position);
+                                      },
+                                      child: PrimaryTextViewInter(
+                                        'delete'.tr,
+                                        color: defaultAccentColor,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  controller
-                                      .showDeleteAddressDialog(info.id ?? 0);
-                                },
-                                child: PrimaryTextViewInter(
-                                  'delete'.tr,
-                                  color: defaultAccentColor,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )
+                              (info.isDefault == 1)
+                                  ? ImageUtils.setSvgAssetsImage(
+                                      path: Drawable.checkCircle,
+                                      color: defaultAccentColor,
+                                      width: 20,
+                                      height: 20)
+                                  : InkWell(
+                                      onTap: () {
+                                        controller
+                                            .defaultAddressApi(info.id ?? 0);
+                                      },
+                                      child: PrimaryTextViewInter(
+                                        'set_as_default'.tr,
+                                        color: defaultAccentColor,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
                             ],
                           ),
                         )

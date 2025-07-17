@@ -16,7 +16,7 @@ class PayButton extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
       child: PrimaryButton(
           buttonText: "Pay  ₹$totalToPay", onPressed: (){
-
+      controller.openCheckout();
       }),
     );
   }

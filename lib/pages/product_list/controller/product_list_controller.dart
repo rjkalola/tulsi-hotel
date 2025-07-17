@@ -28,7 +28,7 @@ class ProductListController extends GetxController {
 
   final currentIndex = 0.obs;
   late final PageController pageController;
-  int productType = 0;
+  int productType = 0, dayType = 0;
 
   void changeTab(int index) {
     currentIndex.value = index;
@@ -57,7 +57,10 @@ class ProductListController extends GetxController {
     var arguments = Get.arguments;
     if (arguments != null) {
       productType = arguments[AppConstants.intentKey.productType] ?? 0;
+      dayType = arguments[AppConstants.intentKey.dayType] ?? 0;
     }
+    currentIndex.value = (dayType == 1) ? 0 : 1;
+    // changeTab(currentIndex.value);
     getProductsApi();
   }
 
@@ -112,6 +115,8 @@ class ProductListController extends GetxController {
         ProductStoreResponse response =
             ProductStoreResponse.fromJson(jsonDecode(responseModel.result!));
         if (response.isSuccess ?? false) {
+          resetCheckedItems(productPosition);
+          cartCount.value = response.data ?? 0;
         } else {
           // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
         }
@@ -139,8 +144,9 @@ class ProductListController extends GetxController {
 
   Future<void> moveToCart() async {
     var result = await Get.toNamed(AppRoutes.cartListScreen);
-    if (result != null && result) {
-
-    }
+    todayList.clear();
+    tomorrowList.clear();
+    getProductsApi();
+    // if (result != null && result) {}
   }
 }
