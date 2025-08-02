@@ -126,6 +126,31 @@ class ProfileTabController extends GetxController
     );
   }
 
+  void removeAccountApi(bool isProgress) async {
+    Map<String, dynamic> map = {};
+    isLoading.value = isProgress;
+    _api.removeAccount(
+      data: map,
+      onSuccess: (ResponseModel responseModel) {
+        BaseResponse response =
+            BaseResponse.fromJson(jsonDecode(responseModel.result!));
+        if (response.isSuccess ?? false) {
+          Get.find<AppStorage>().clearAllData();
+          Get.offAllNamed(AppRoutes.loginScreen);
+        } else {
+          // AppUtils.showSnackBarMessage(responseModel.statusMessage!);
+        }
+        isLoading.value = false;
+      },
+      onError: (ResponseModel error) {
+        isLoading.value = false;
+        if (error.statusCode == ApiConstants.CODE_NO_INTERNET_CONNECTION) {
+          isInternetNotAvailable.value = true;
+        }
+      },
+    );
+  }
+
   void showEditProfileDialog() {
     Get.bottomSheet(
         EditProfileDialog(

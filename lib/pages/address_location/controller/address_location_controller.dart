@@ -21,14 +21,12 @@ import '../../../utils/app_constants.dart';
 class AddressLocationController extends GetxController {
   final Completer<GoogleMapController> mapController = Completer();
   final placesService =
-  GooglePlacesService("AIzaSyDDOWUo-4BVRwrbtkE2kPVz7USJCZqlwd4");
+      GooglePlacesService("AIzaSyA73MTz-pQbYcD_N364dHttbRd4cnppVN8");
 
   var searchResults = <Map<String, dynamic>>[].obs;
   var selectedLatLng = LatLng(23.0225, 72.5714).obs;
   final locationService = LocationServiceNew();
-  String latitude = "",
-      longitude = "",
-      location = "";
+  String latitude = "", longitude = "", location = "";
 
   RxBool isLoading = false.obs,
       isInternetNotAvailable = false.obs,
@@ -48,25 +46,20 @@ class AddressLocationController extends GetxController {
     var arguments = Get.arguments;
     if (arguments != null) {
       addressInfo.value = arguments[AppConstants.intentKey.addressInfo] ?? "";
-      print("1");
       if ((addressInfo.value.id ?? 0) > 0) {
-        print("2");
         if (addressInfo.value.latitude != null &&
             addressInfo.value.longitude != null) {
-          print("3");
           selectedLatLng.value =
               LatLng(addressInfo.value.latitude!, addressInfo.value.longitude!);
 
           Future.delayed(Duration(milliseconds: 300), () async {
             if (mapController.isCompleted) {
-              print("5");
               final controller = await mapController.future;
               controller
                   .animateCamera(CameraUpdate.newLatLng(selectedLatLng.value));
             }
           });
 
-          print("4");
         }
       }
     }
@@ -90,7 +83,7 @@ class AddressLocationController extends GetxController {
       formData: formData,
       onSuccess: (ResponseModel responseModel) {
         BaseResponse response =
-        BaseResponse.fromJson(jsonDecode(responseModel.result!));
+            BaseResponse.fromJson(jsonDecode(responseModel.result!));
         if (response.isSuccess ?? false) {
           Get.back(result: true);
         } else {
@@ -151,8 +144,7 @@ class AddressLocationController extends GetxController {
             latLon.latitude, latLon.longitude);
         selectedLatLng.value = LatLng(latLon.latitude, latLon.longitude);
         final controller = await mapController.future;
-        controller
-            .animateCamera(CameraUpdate.newLatLng(selectedLatLng.value));
+        controller.animateCamera(CameraUpdate.newLatLng(selectedLatLng.value));
       }
     }
   }

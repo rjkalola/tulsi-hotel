@@ -88,6 +88,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                       controller.mOtpCode.value =
                                           code.toString();
                                       print("onCodeChanged $code");
+                                      if (controller.mOtpCode.value.length ==
+                                          6) {
+                                        controller.verifyOtpApi();
+                                      }
                                     },
                                     onResendOtp: () {
                                       // controller.teamGenerateOtpApi();

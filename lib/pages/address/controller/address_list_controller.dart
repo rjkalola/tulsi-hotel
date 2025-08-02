@@ -38,8 +38,8 @@ class AddressListController extends GetxController
   @override
   Future<void> onInit() async {
     super.onInit();
-    locationRequest();
-    appLifeCycle();
+    // locationRequest();
+    // appLifeCycle();
     addressListResponseApi();
   }
 

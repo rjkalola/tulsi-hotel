@@ -14,6 +14,7 @@ import 'package:tulsi_hotel/widgets/custom_views/no_internet_widgets.dart';
 import 'package:tulsi_hotel/widgets/other_widgets/right_arrow_widget.dart';
 import 'package:tulsi_hotel/widgets/progressbar/CustomProgressbar.dart';
 import 'package:tulsi_hotel/widgets/text/PrimaryTextViewInter.dart';
+import 'package:tulsi_hotel/widgets/text/TextViewWithContainer.dart';
 
 import '../../../../../res/colors.dart';
 import '../../../../../utils/AlertDialogHelper.dart';
@@ -53,99 +54,127 @@ class _ProfileTabState extends State<ProfileTab>
                   visible: controller.isMainViewVisible.value,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(16, 24, 16, 0),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ImageUtils.setUserImage(
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                              url: controller.userInfo.value.image ?? ""),
-                          const SizedBox(height: 12),
-                          PrimaryTextViewInter(
-                            getFinalString(
-                                controller.userInfo.value.name ?? ""),
-                            color: primaryTextColor,
-                            fontSize: 18,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ImageUtils.setUserImage(
+                                    width: 100,
+                                    height: 100,
+                                    fit: BoxFit.cover,
+                                    url: controller.userInfo.value.image ?? ""),
+                                const SizedBox(height: 12),
+                                PrimaryTextViewInter(
+                                  getFinalString(
+                                      controller.userInfo.value.name ?? ""),
+                                  color: primaryTextColor,
+                                  fontSize: 18,
+                                ),
+                                const SizedBox(height: 6),
+                                PrimaryButton(
+                                    width: 100,
+                                    height: 30,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    buttonText: 'edit_profile'.tr,
+                                    onPressed: () {
+                                      controller.showEditProfileDialog();
+                                    }),
+                                const SizedBox(height: 30),
+                                InfoRow(
+                                  iconPath: Drawable.phoneIcon,
+                                  iconPadding: 0,
+                                  title: 'mobile_no'.tr,
+                                  value:
+                                      "+91 - ${getFinalString(controller.userInfo.value.phoneNumber ?? "")}",
+                                ),
+                                const Divider(
+                                  color: dividerColor,
+                                ),
+                                InfoRow(
+                                  iconPath: Drawable.mailIcon,
+                                  iconPadding: 1,
+                                  title: 'email_id'.tr,
+                                  value: getFinalString(
+                                      controller.userInfo.value.email ?? ""),
+                                ),
+                                const Divider(
+                                  color: dividerColor,
+                                ),
+                                InfoRow(
+                                  iconPath: Drawable.address,
+                                  iconPadding: 0,
+                                  title: 'your_addresses'.tr,
+                                  value: getFinalString(
+                                      controller.userInfo.value.address ?? ""),
+                                  rightArrowVisible: true,
+                                ),
+                                const Divider(
+                                  color: dividerColor,
+                                ),
+                                const SizedBox(height: 26),
+                                GestureDetector(
+                                  onTap: () {
+                                    AlertDialogHelper.showAlertDialog(
+                                        "",
+                                        'logout_msg'.tr,
+                                        'yes'.tr,
+                                        'no'.tr,
+                                        "",
+                                        true,
+                                        this,
+                                        AppConstants.dialogIdentifier.logout);
+                                  },
+                                  child: ItemContainer(
+                                      padding:
+                                          EdgeInsets.fromLTRB(16, 11, 16, 11),
+                                      borderColor: AppUtils.haxColor("#ff4040"),
+                                      child: Row(
+                                        children: [
+                                          ImageUtils.setSvgAssetsImage(
+                                              path: Drawable.logoutIcon,
+                                              width: 18,
+                                              height: 18),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: PrimaryTextViewInter(
+                                              'logout'.tr,
+                                              color:
+                                                  AppUtils.haxColor("#ff4040"),
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          RightArrowWidget()
+                                        ],
+                                      )),
+                                )
+                              ],
+                            ),
                           ),
-                          const SizedBox(height: 6),
-                          PrimaryButton(
-                              width: 100,
-                              height: 30,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              buttonText: 'edit_profile'.tr,
-                              onPressed: () {
-                                controller.showEditProfileDialog();
-                              }),
-                          const SizedBox(height: 30),
-                          InfoRow(
-                            iconPath: Drawable.phoneIcon,
-                            iconPadding: 0,
-                            title: 'mobile_no'.tr,
-                            value:
-                                "+91 - ${getFinalString(controller.userInfo.value.phoneNumber ?? "")}",
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            AlertDialogHelper.showAlertDialog(
+                                "",
+                                'remove_account_msg'.tr,
+                                'yes'.tr,
+                                'no'.tr,
+                                "",
+                                true,
+                                this,
+                                AppConstants.dialogIdentifier.removeAccount);
+                          },
+                          child: TextViewWithContainer(
+                            boxColor: Colors.transparent,
+                            padding: EdgeInsets.all(20),
+                            text: 'remove_account'.tr,
+                            fontSize: 15,
+                            fontColor: secondaryTextColor,
                           ),
-                          const Divider(
-                            color: dividerColor,
-                          ),
-                          InfoRow(
-                            iconPath: Drawable.mailIcon,
-                            iconPadding: 1,
-                            title: 'email_id'.tr,
-                            value: getFinalString(
-                                controller.userInfo.value.email ?? ""),
-                          ),
-                          const Divider(
-                            color: dividerColor,
-                          ),
-                          InfoRow(
-                            iconPath: Drawable.address,
-                            iconPadding: 0,
-                            title: 'your_addresses'.tr,
-                            value: getFinalString(
-                                controller.userInfo.value.address ?? ""),
-                            rightArrowVisible: true,
-                          ),
-                          const Divider(
-                            color: dividerColor,
-                          ),
-                          const SizedBox(height: 26),
-                          GestureDetector(
-                            onTap: () {
-                              AlertDialogHelper.showAlertDialog(
-                                  "",
-                                  'logout_msg'.tr,
-                                  'yes'.tr,
-                                  'no'.tr,
-                                  "",
-                                  true,
-                                  this,
-                                  AppConstants.dialogIdentifier.logout);
-                            },
-                            child: ItemContainer(
-                                padding: EdgeInsets.fromLTRB(16, 11, 16, 11),
-                                borderColor: AppUtils.haxColor("#ff4040"),
-                                child: Row(
-                                  children: [
-                                    ImageUtils.setSvgAssetsImage(
-                                        path: Drawable.logoutIcon,
-                                        width: 18,
-                                        height: 18),
-                                    const SizedBox(width: 12),
-                                    Expanded(
-                                      child: PrimaryTextViewInter(
-                                        'logout'.tr,
-                                        color: AppUtils.haxColor("#ff4040"),
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    RightArrowWidget()
-                                  ],
-                                )),
-                          )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
                   ),
                 ),
@@ -171,7 +200,8 @@ class _ProfileTabState extends State<ProfileTab>
 
   @override
   void onNegativeButtonClicked(String dialogIdentifier) {
-    if (dialogIdentifier == AppConstants.dialogIdentifier.logout) {
+    if (dialogIdentifier == AppConstants.dialogIdentifier.logout ||
+        dialogIdentifier == AppConstants.dialogIdentifier.removeAccount) {
       Get.back();
     }
   }
@@ -182,6 +212,9 @@ class _ProfileTabState extends State<ProfileTab>
   @override
   void onPositiveButtonClicked(String dialogIdentifier) {
     if (dialogIdentifier == AppConstants.dialogIdentifier.logout) {
+      controller.logoutApi(true);
+    } else if (dialogIdentifier ==
+        AppConstants.dialogIdentifier.removeAccount) {
       controller.logoutApi(true);
     }
   }

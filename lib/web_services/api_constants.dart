@@ -34,6 +34,7 @@ class ApiConstants {
   static String storeProfileInfo = '$appUrl/store-profile-info';
   static String logout = '$appUrl/logout';
   static String getOrders = '$appUrl/orders';
+  static String deleteAccount = '$appUrl/delete-account';
 
   static const ApiMethod method = ApiMethod();
 }

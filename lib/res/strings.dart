@@ -93,7 +93,14 @@ class Strings extends Translations {
           'logout_msg': "Are you sure you want to logout?",
           'please_select_item': "Please select item",
           'please_add_address': "Please add address",
-          // '': "",
+          'update_available': "Update Available",
+          'update_app_message':
+              "A new version of the app is available.\nPlease update to continue.",
+          'update_app_error': "Could not open the store link",
+          'update': "Update",
+          'remove_account': "Remove Account",
+          'remove_account_msg':
+              "Are you sure you want to remove your account permanently?",
 // '': "",
 // '': "",
 // '': "",

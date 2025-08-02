@@ -25,7 +25,6 @@ class IntentKey {
   final String productType = 'PRODUCT_TYPE';
   final String dayType = 'DAY_TYPE';
   final String dashboardTabIndex = 'DASHBOARD_TAB_INDEX';
-
 }
 
 class DialogIdentifier {
@@ -33,7 +32,7 @@ class DialogIdentifier {
   final String logout = 'logout';
   final String delete = 'DELETE';
   final String attachmentOptionsList = 'ATTACHMENT_OPTIONS_LIST';
-
+  final String removeAccount = 'REMOVE_ACCOUNT';
 }
 
 class SharedPreferenceKey {
@@ -56,8 +55,6 @@ class AttachmentType {
   final String croppedImage = "croppedImage";
 }
 
-
 class Type {
   const Type(); //
-
 }

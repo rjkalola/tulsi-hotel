@@ -57,4 +57,22 @@ class ProfileTabRepository {
       onError: (error) => {if (onError != null) onError(error)},
     );
   }
+
+  void removeAccount({
+    dynamic data,
+    Function(ResponseModel responseModel)? onSuccess,
+    Function(ResponseModel error)? onError,
+  }) {
+    ApiRequest(
+            url: ApiConstants.deleteAccount,
+            apiMethod: ApiConstants.method.get,
+            data: data,
+            isFormData: false)
+        .apiRequest(
+      onSuccess: (data) {
+        onSuccess!(data);
+      },
+      onError: (error) => {if (onError != null) onError(error)},
+    );
+  }
 }
